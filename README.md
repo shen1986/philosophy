@@ -24,4 +24,7 @@
 - 产品色板 - 品牌色 + 功能色板
 - _variables.scss 中设定 !default ，用户可以覆盖主题色
 
+## normalize.css
+- _reboots.scss 解决多游览器的兼容问题。
+
 
