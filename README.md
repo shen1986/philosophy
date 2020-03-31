@@ -27,4 +27,6 @@
 ## normalize.css
 - _reboots.scss 解决多游览器的兼容问题。
 
+- 淘宝仓库
+    + registry https://registry.npm.taobao.org/
 
