@@ -1,30 +1,35 @@
 import React from 'react';
-import Button, { ButtonType, ButtonSize } from './components/Button/button'
+// import Button, { ButtonType, ButtonSize } from './components/Button/button'
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem'
+import SubMenu from './components/Menu/subMenu';
 
 function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <Menu defaultIndex={0} onSelect={(index) => {alert(index)}} mode='vertical'>
-                    <MenuItem index={0}>
+                <Menu defaultIndex="0" onSelect={(index) => {alert(index)}} mode="horizotal" defaultOpenSubMenus={['2']}>
+                    <MenuItem>
                         cool link
                     </MenuItem>
-                    <MenuItem index={1}>
+                    <MenuItem disabled>
                         cool link2
                     </MenuItem>
-                    <MenuItem index={2}>
+                    <SubMenu title="dorpdown">
+                        <MenuItem>
+                            dropdown1
+                        </MenuItem>
+                        <MenuItem>
+                            dropdown2
+                        </MenuItem>
+                        <MenuItem>
+                            dropdown3
+                        </MenuItem>
+                    </SubMenu>
+                    <MenuItem>
                         cool link3
                     </MenuItem>
                 </Menu>
-                <Button className="custom">Hello</Button>
-                <Button disabled>disabled button</Button>
-                <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Hello</Button>
-                <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>Hello</Button>
-                <Button btnType={ButtonType.Link} href="http://www.baidu.com">Baidu link</Button>
-                <Button btnType={ButtonType.Link} href="http://www.baidu.com" target="_blank">Baidu link</Button>
-                <Button btnType={ButtonType.Link} href="http://www.baidu.com" disabled>Disabled link</Button>
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
                 </p>
