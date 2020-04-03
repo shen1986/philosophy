@@ -13,7 +13,7 @@ const App: FC = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <Tabs>
+                <Tabs type="card">
                     <TabItem label="1hao">
                         card1
                     </TabItem>

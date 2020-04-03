@@ -2,7 +2,6 @@ import React, {
     useState,
     createContext,
     FunctionComponentElement,
-    cloneElement,
     FC,
 } from 'react'
 import classNames from 'classnames'
@@ -10,10 +9,14 @@ import { TabItemProps } from './tabItem'
 
 type TabsType = "line" | "card"
 export interface TabsProps {
-    defaultIndex?: number
-    className?: string
-    onSelect?: (selectedIndex: number) => void
-    type?: TabsType
+  /**当前激活 tab 面板的 index，默认为0 */
+  defaultIndex?: number;
+  /**可以扩展的 className */
+  className?: string;
+  /**点击 Tab 触发的回调函数 */
+  onSelect?: (selectedIndex: number) => void;
+  /**Tabs的样式，两种可选，默认为 line */
+  type?: TabsType;
 }
 
 interface ITabsContext {
@@ -24,9 +27,10 @@ interface ITabsContext {
 export const TabsContext = createContext<ITabsContext>({ index: 0 })
 
 /**
- * 选项卡切换组件。 提供平级的区域将大块内容进行收纳和展现，保持界面整洁。
+ * 选项卡切换组件。
+ * 提供平级的区域将大块内容进行收纳和展现，保持界面整洁。
  * ### 引用方法
- *
+ * 
  * ~~~js
  * import { Tabs } from 'vikingship'
  * ~~~
@@ -39,64 +43,57 @@ export const Tabs: FC<TabsProps> = (props) => {
         type,
         children,
     } = props
-    const [currentActive, setActive] = useState(defaultIndex)
+    const [ activeIndex, setActiveIndex ] = useState(defaultIndex)
 
     const classes = classNames("viking-tabs", className)
-    const ulClass = classNames('viking-tabs-nav', {
+
+    const handleClick = (e: React.MouseEvent, index: number, disabled: boolean | undefined) => {
+        if (!disabled) {
+            setActiveIndex(index)
+            if (onSelect) {
+            onSelect(index)
+            }
+        }
+    }
+    const navClass = classNames('viking-tabs-nav', {
         'nav-line': type === 'line',
-        'nav-card': type === 'card'
+        'nav-card': type === 'card',
     })
 
-    const handleClick = (selectedIndex: number) => {
-        if (onSelect) {
-            onSelect(selectedIndex)
-        }
-        setActive(selectedIndex)
-    }
-
-    const passedContext: ITabsContext = {
-        index: currentActive ? currentActive : 0,
-        onSelect: handleClick,
-    }
-
-    const renderChild = () => {
+    const renderNavLinks = () => {
         return React.Children.map(children, (child, index) => {
-            const childElement = child as FunctionComponentElement<TabItemProps & {index: number}>
-            const { displayName } = childElement.type
-            if (displayName === 'TabItem') {
-                return cloneElement(childElement, {
-                    index
-                })
-            } else {
-                console.error("Warning: Tabs has a child which is not a TabItem component")
+            const childElement = child as FunctionComponentElement<TabItemProps>
+            const { label, disabled } = childElement.props
+            const classes = classNames('viking-tabs-nav-item', {
+                'is-active': activeIndex === index,
+                'disabled': disabled,
+            })
+            return (
+            <li 
+                className={classes} 
+                key={`nav-item-${index}`}
+                onClick={(e) => {handleClick(e, index, disabled)}}
+            >
+                {label}
+            </li>
+            )
+        })
+    }
+    const renderContent = () => {
+        return React.Children.map(children, (child, index) => {
+            if (index === activeIndex) {
+              return child
             }
         })
     }
-
-    const renderChildContent = () => {
-        let childContent: React.ReactNode = null;
-        React.Children.forEach(children, (child, index) => {
-            const childElement = child as FunctionComponentElement<TabItemProps & { index: number }>
-            const { displayName } = childElement.type
-            if (displayName === 'TabItem' && index === currentActive) {
-                childContent = (childElement.props as any).children
-            } else {
-                console.error("Warning: Tabs has a child which is not a TabItem component")
-            }
-        })
-        return childContent
-    }
-
     return (
         <div className={classes}>
-            <ul className={ulClass}>
-                <TabsContext.Provider value={passedContext}>
-                    {renderChild()}
-                </TabsContext.Provider>
-            </ul>
-            <div className="viking-tabs-content">
-                {renderChildContent()}
-            </div>
+          <ul className={navClass}>
+            {renderNavLinks()}
+          </ul>
+          <div className="viking-tabs-content">
+            {renderContent()}
+          </div>
         </div>
     )
 }
