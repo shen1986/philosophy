@@ -1,1 +1,3 @@
-[主键说明](storybook-static/README.md)
+
+# 组件说明文档
+[说明文档](http://www.shenxf.com/philosophy)
