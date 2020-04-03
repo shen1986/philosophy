@@ -10,24 +10,34 @@ import classNames from 'classnames'
 import { MenuItemProps } from './menuItem'
 
 type MenuMode = 'horizotal' | 'vertical'
-type SelectCallback = (selectedIndex: string) => void
 export interface MenuProps {
+    /**默认 active 的菜单项的索引值 */
     defaultIndex?: string
     className?: string
+    /**菜单类型 横向或者纵向 */
     mode?: MenuMode
     style?: CSSProperties
-    onSelect?: SelectCallback
+    /**点击菜单项触发的回掉函数 */
+    onSelect?: (selectedIndex: string) => void
+    /**设置子菜单的默认打开 只在纵向模式下生效 */
     defaultOpenSubMenus?: string[]
 }
 interface IMenuContext {
     index: string
-    onSelect?: SelectCallback
+    onSelect?: (selectedIndex: string) => void
     mode?: MenuMode
     defaultOpenSubMenus?: string[]
 }
 
 export const MenuContext = createContext<IMenuContext>({index: '0'})
-const Menu: FC<MenuProps> = (props) => {
+
+/**
+ * 为网站提供导航功能的菜单。支持横向纵向两种模式，支持下拉菜单。
+ * ~~~js
+ * import { Menu } from 'vikingship'
+ * ~~~
+ */
+export const Menu: FC<MenuProps> = (props) => {
     const {
         defaultIndex,
         className,
@@ -81,4 +91,4 @@ Menu.defaultProps = {
     mode: 'horizotal',
 }
 
-export default Menu
+export default Menu;
