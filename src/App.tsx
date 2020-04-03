@@ -1,22 +1,24 @@
 import React, {
-    useState,
+    // useState,
     FC,
 } from 'react';
-import Button from './components/Button/button'
-import Menu from './components/Menu/menu';
-import MenuItem from './components/Menu/menuItem'
-import SubMenu from './components/Menu/subMenu';
+import Alert from './components/Alert/alert'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import Transition from './components/Transtion/transtion';
 library.add(fas)
 
 const App: FC = () => {
-    const [show, setShow] = useState(false)
+    // const [show, setShow] = useState(false)
     return (
         <div className="App">
             <header className="App-header">
-                <Menu defaultIndex="0" onSelect={(index) => {alert(index)}} mode="horizotal">
+                <Alert
+                    title="我是alert组件"
+                    onClose={() => alert("ok")}
+                    description="非常好的组件"
+                    closable={false}
+                />
+                {/* <Menu defaultIndex="0" onSelect={(index) => {alert(index)}} mode="horizotal">
                     <MenuItem>
                         cool link
                     </MenuItem>
@@ -73,7 +75,7 @@ const App: FC = () => {
                     <Button btnType="primary" size="lg">
                         A large Button
                     </Button>
-                </Transition>
+                </Transition> */}
             </header>
         </div>
     );

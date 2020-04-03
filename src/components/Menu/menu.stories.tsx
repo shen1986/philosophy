@@ -18,5 +18,5 @@ export const defaultMenu = () => (
   </Menu>
 )
 
-storiesOf('Menu Component', module)
+storiesOf('Menu组件', module)
 .add('Menu', defaultMenu )

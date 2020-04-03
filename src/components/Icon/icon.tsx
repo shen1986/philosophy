@@ -14,7 +14,7 @@ export interface IconProps extends FontAwesomeIconProps {
     theme?: ThemeProps
 }
 
-const Icon: FC<IconProps> = (props) => {
+export const Icon: FC<IconProps> = (props) => {
     // icon-primary
     const {
         className,
@@ -29,4 +29,4 @@ const Icon: FC<IconProps> = (props) => {
     )
 }
 
-export default Icon
+export default Icon;
