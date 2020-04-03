@@ -2,7 +2,8 @@ import React, {
     // useState,
     FC,
 } from 'react';
-import Alert from './components/Alert/alert'
+import Tabs from './components/Tabs/tabs'
+import TabItem from './components/Tabs/tabItem'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
@@ -12,12 +13,20 @@ const App: FC = () => {
     return (
         <div className="App">
             <header className="App-header">
-                <Alert
+                <Tabs>
+                    <TabItem label="1hao">
+                        card1
+                    </TabItem>
+                    <TabItem label="2hao">
+                        card2
+                    </TabItem>
+                </Tabs>
+                {/* <Alert
                     title="我是alert组件"
                     onClose={() => alert("ok")}
                     description="非常好的组件"
                     closable={false}
-                />
+                /> */}
                 {/* <Menu defaultIndex="0" onSelect={(index) => {alert(index)}} mode="horizotal">
                     <MenuItem>
                         cool link
