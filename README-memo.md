@@ -33,3 +33,6 @@
 - [fontawesome](https://github.com/FortAwesome/react-fontawesome)（免费的图标字体库）
 
 - [findDOMNode 功能废止](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
+
+## 现在请求服务器测试平台
+- https://jsonplaceholder.typicode.com/
