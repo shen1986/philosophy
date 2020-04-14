@@ -29,6 +29,12 @@ export interface UploadProps {
     onError?: (err: any, file: File) => void
     onChange?: (file: File) => void
     onRemove?: (file:UploadFile) => void
+    headers?: {[key:string]: any}
+    name?: string
+    data?: { [key: string]: any }
+    withCredentials?: boolean
+    accept?: string
+    multiple?: boolean
 }
 
 export const Upload: FC<UploadProps> = (props) => {
@@ -41,6 +47,12 @@ export const Upload: FC<UploadProps> = (props) => {
         onError,
         onChange,
         onRemove,
+        name,
+        headers,
+        data,
+        withCredentials,
+        accept,
+        multiple,
     } = props
 
     const fileInput = useRef<HTMLInputElement>(null)
@@ -105,13 +117,24 @@ export const Upload: FC<UploadProps> = (props) => {
             percent: 0,
             raw: file
         }
-        setFileList([_file, ...fileList])
+        // setFileList([_file, ...fileList])
+        setFileList(prevList => {
+            return [_file, ...prevList]
+        })
         const formData = new FormData()
-        formData.append(file.name, file)
+        // formData.append(file.name, file)
+        formData.append(name || 'file', file)
+        if (data) {
+            Object.keys(data).forEach(key => {
+                formData.append(key, data[key])
+            })
+        }
         axios.post(action, formData,{
             headers: {
+                ...headers,
                 'Content-type': 'multipart/form-data'
             },
+            withCredentials,
             onUploadProgress: (e) => {
                 let percentage = Math.round((e.loaded * 100) / e.total) || 0
                 if (percentage < 100) {
@@ -158,6 +181,8 @@ export const Upload: FC<UploadProps> = (props) => {
                 ref={fileInput}
                 onChange={handleFileChange}
                 type="file"
+                accept={accept}
+                multiple={multiple}
             />
             <UploadList
                 fileList={fileList}
@@ -165,6 +190,10 @@ export const Upload: FC<UploadProps> = (props) => {
             />
         </div>
     )
+}
+
+Button.defaultProps = {
+    name: 'file'
 }
 
 export default Button;
