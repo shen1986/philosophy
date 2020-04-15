@@ -4,7 +4,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import Icon from '../Icon/icon'
-import Transition from '../Transtion/transtion'
+import Transition from '../Transition/transition'
 
 type AlertType  = "success" | "default" | "danger" | "warning"
 export interface AlertProps {

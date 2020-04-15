@@ -36,6 +36,6 @@ import { Button } from 'vikingship'
 storiesOf('欢迎', module)
   .add('welcome', () => {
     return (
-      <h2>欢迎来到 vikingship 组件库</h2>
+      <h2>欢迎来到 philosophy 组件库</h2>
     )
   }, { info : { text: markdownText, source: false, }})

@@ -8,7 +8,7 @@ import classNames from 'classnames'
 import Icon from '../Icon/icon'
 import { MenuContext } from './menu'
 import { MenuItemProps } from './menuItem'
-import Transtion from '../Transtion/transtion'
+import Transtion from '../Transition/transition'
 
 export interface SubMenuProps {
     index?: string

@@ -7,7 +7,7 @@ import React, {
 import axios from 'axios'
 
 import UploadList from './uploadList'
-import Button from '../Button/button'
+import { Dragger } from './dragger'
 
 export type UploadFilesStatus = 'ready' | 'uploading' | 'success' | 'error'
 export interface UploadFile {
@@ -35,6 +35,7 @@ export interface UploadProps {
     withCredentials?: boolean
     accept?: string
     multiple?: boolean
+    drag?: boolean
 }
 
 export const Upload: FC<UploadProps> = (props) => {
@@ -53,6 +54,8 @@ export const Upload: FC<UploadProps> = (props) => {
         withCredentials,
         accept,
         multiple,
+        children,
+        drag,
     } = props
 
     const fileInput = useRef<HTMLInputElement>(null)
@@ -164,26 +167,30 @@ export const Upload: FC<UploadProps> = (props) => {
             }
         })
     }
-    console.log(fileList)
     return (
         <div
             className="viking-upload-component"
         >
-            <Button
-                btnType="primary"
+            <div className="viking-upload-input"
+                style={{display: 'inline-box'}}
                 onClick={handleClick}
             >
-                Upload File
-            </Button>
-            <input
-                className="viking-file-input"
-                style={{display: 'none'}}
-                ref={fileInput}
-                onChange={handleFileChange}
-                type="file"
-                accept={accept}
-                multiple={multiple}
-            />
+                {drag?
+                    <Dragger onFile={(files) => {uploadFiles(files)}}>
+                        {children}
+                    </Dragger>:
+                    children
+                }
+                <input
+                    className="viking-file-input"
+                    style={{ display: 'none' }}
+                    ref={fileInput}
+                    onChange={handleFileChange}
+                    type="file"
+                    accept={accept}
+                    multiple={multiple}
+                />
+            </div>
             <UploadList
                 fileList={fileList}
                 onRemove={handleRemove}
@@ -192,8 +199,8 @@ export const Upload: FC<UploadProps> = (props) => {
     )
 }
 
-Button.defaultProps = {
+Upload.defaultProps = {
     name: 'file'
 }
 
-export default Button;
+export default Upload;
