@@ -8,4 +8,4 @@ export type ITabsComponent = FC<TabsProps> & {
 const TransTabs = Tabs as ITabsComponent
 TransTabs.Item = TabItem
 
-export default TransTabs
+export default TransTabs;

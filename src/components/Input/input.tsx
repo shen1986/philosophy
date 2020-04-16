@@ -2,7 +2,6 @@ import React, { forwardRef, ReactElement, InputHTMLAttributes, ChangeEvent } fro
 import classNames from 'classnames'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import Icon from '../Icon/icon'
-import { Button } from '../..'
 
 type InputSize = 'lg' | 'sm'
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size'> {
@@ -70,10 +69,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         </div>
     )
 })
-
-Button.defaultProps = {
-    disabled: false,
-    btnType: 'default'
-}
 
 export default Input;

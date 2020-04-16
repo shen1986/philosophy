@@ -1,5 +1,10 @@
 import { RefObject, useEffect } from 'react'
 
+/**
+ * 点击钩子
+ * @param ref 对象
+ * @param handler 钩子事件
+ */
 function useClickOutside(ref: RefObject<HTMLElement>, handler: Function) {
     useEffect(() => {
         const listener = (event: MouseEvent) => {
@@ -15,4 +20,4 @@ function useClickOutside(ref: RefObject<HTMLElement>, handler: Function) {
     }, [ref, handler])
 }
 
-export default useClickOutside
+export default useClickOutside;
