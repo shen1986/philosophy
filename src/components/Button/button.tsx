@@ -30,7 +30,7 @@ export type ButtonProps = NativeButtonProps & AnchorButtonProps
  * ### 引用方法
  *
  * ~~~js
- * import { Button } from 'vikingship'
+ * import { Button } from 'philosophyship'
  * ~~~
  */
 export const Button: FC<ButtonProps> = (props) => {

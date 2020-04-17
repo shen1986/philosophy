@@ -25,7 +25,7 @@ export interface AlertProps {
  * ### 引用方法
  *
  * ~~~js
- * import { Alert } from 'vikingship'
+ * import { Alert } from 'philosophyship'
  * ~~~
  */
 export const Alert:FC<AlertProps> = (props) => {

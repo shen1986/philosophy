@@ -3,14 +3,14 @@ import { storiesOf } from '@storybook/react'
 
 const markdownText = `
 ### 使用 React+typescript 从零到一打造一套你自己的组件库
-vikingship 一套组件库，使用 React Hooks 和 typescript
+philosophyship 一套组件库，使用 React Hooks 和 typescript
 
 从零到一，由浅入深的提高自己的 React 和 typescript 水平
 
 ### 安装试试
 
 ~~~javascript
-npm install vikingship --save
+npm install philosophyship --save
 ~~~
 
 
@@ -18,9 +18,9 @@ npm install vikingship --save
 
 ~~~javascript
 // 加载样式
-import 'vikingship/dist/index.css'
+import 'philosophyship/dist/index.css'
 // 引入组件
-import { Button } from 'vikingship'
+import { Button } from 'philosophyship'
 ~~~
 
 ### 亮点

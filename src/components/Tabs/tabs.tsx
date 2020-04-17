@@ -32,7 +32,7 @@ export const TabsContext = createContext<ITabsContext>({ index: 0 })
  * ### 引用方法
  * 
  * ~~~js
- * import { Tabs } from 'vikingship'
+ * import { Tabs } from 'philosophyship'
  * ~~~
  */
 export const Tabs: FC<TabsProps> = (props) => {
